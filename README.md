@@ -11,7 +11,16 @@ Single Cell Model Zoo:
 
     * Once the models are trained, we want to apply these models to datasets which where unseen an training time. 
 
+    * Pretrained model should be fine-tunable on new data
+
 * Questions / Issues:
+
+    * Which downstream task can be performed when using a pretrained model:
+        * definetely embedding
+        * what about:
+            * differential expression analysis
+            * batch effect removal
+        * ... what else
 
     * when training such a model we use a particular modality with a certain number of features (=expressions). When we want to use this model for a new dataset we (usually?) have a different feature set (differnt expressions). To make the new dataset applicable to the pretrained model we need to project the model to the feature space we used for trainig.This means we take the itersection of the featues (expressions which are in both datsets) and set the missing features to zero.
     This might lead to poor performance.
@@ -27,10 +36,16 @@ Single Cell Model Zoo:
 
 * Ideas:
 
-    - We could merge multiple datasets with potentially different features/expressions into a single dataset.
+    * We could merge multiple datasets with potentially different features/expressions into a single dataset.
     All expressions which are missing in one dataset but are contained in an other dataset are set to zero in the dataset where they are missing
     (to put it differntly, we replace missing expressions/features with zeros)
     After merging all exressions should be non-zero for at least some cells.
     In this way we created a datset which has support for a lot of expressions.
     In the extrem we would combine all datassets we can find, and create a model which uses all 20,000 genes.
     The main challange will be to train a neural network which is able to handle 20k features.
+
+
+* Software Questions:
+
+    * What format should the neural networ be stored? What framework to use?
+        * pytorch, onnx, tensorflow?
