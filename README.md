@@ -1,12 +1,7 @@
 # scmz
-single cell model zoo bainstorm repo
-
-
-
-
-
 
 Single Cell Model Zoo:
+================================
 
     - what we want: 
         - smth like scVI (https://github.com/YosefLab/scVI)
